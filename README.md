@@ -10,13 +10,13 @@ Add this to your `Cargo.toml`:
 # Cargo.toml
 
 [dependencies]
-nonempty-containers = "0.0.2"
+nonempty-containers = "0.0.3"
 ```
 
 The non-empty containers behave like their standard counterparts:
 
 ```rust
-use nonempty-containers::NonEmptyVec;
+use nonempty_containers::NonEmptyVec;
 
 let nev = NonEmptyVec::new(42, vec![1]);
 
