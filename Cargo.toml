@@ -1,6 +1,6 @@
 [package]
 name = "nonempty-containers"
-version = "0.0.1-dev-1"
+version = "0.0.2-dev-10"
 authors = [
     "Mohammad Abbas <mohammad.abbas23@imperial.ac.uk>",
     "Lancelot Liu <lancelot.liu23@imperial.ac.uk>",
@@ -8,8 +8,17 @@ authors = [
 edition = "2021"
 description = "Fast, zero-cost conversion, and fully inter-operable nonempty container types."
 readme = "README.md"
-repository = "https://gitlab.doc.ic.ac.uk/lab2425_spring/WACC_43"
+repository = "https://github.com/Funky-Farm/nonempty-containers"
 license = "MIT"
-keywords = ["non-empty", "nonempty", "container", "collection"]
+keywords = ["non-empty", "nonempty", "container", "functional"]
+categories = ["collections"]
 
 [dependencies]
+arbitrary = { features = ["derive"], optional = true, version = "1.4.1" }
+
+[features]
+default = ["std"]
+std = []
+
+# Allows arbitrary generation of non-empty containers.
+arbitrary = ["dep:arbitrary"]
