@@ -5,6 +5,7 @@
 //! common container types, such as [Vec].
 
 pub mod nonemptyvec;
+pub use nonemptyvec::NonEmptyVec;
 
 #[cfg(feature = "arbitrary")]
 mod arbitrary;
