@@ -1,4 +1,6 @@
+//! Implementations for [Arbitrary] for non-empty container types.
 
+use arbitrary::{Arbitrary, Unstructured};
 
 impl <'a, T: Arbitrary<'a>> Arbitrary<'a> for NonEmptyVec<T> {
     fn arbitrary(u: &mut Unstructured<'a>) -> arbitrary::Result<Self> {

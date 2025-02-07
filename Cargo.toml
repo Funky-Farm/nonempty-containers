@@ -11,14 +11,12 @@ readme = "README.md"
 repository = "https://github.com/Funky-Farm/nonempty-containers"
 license = "MIT"
 keywords = ["non-empty", "nonempty", "container", "functional"]
-categories = ["collections"]
+categories = ["data-structures"]
 
 [dependencies]
+# Language: Arbitrary data structure generation. Tied to the `arbitrary` feature.
 arbitrary = { features = ["derive"], optional = true, version = "1.4.1" }
 
 [features]
-default = ["std"]
-std = []
-
 # Allows arbitrary generation of non-empty containers.
 arbitrary = ["dep:arbitrary"]
