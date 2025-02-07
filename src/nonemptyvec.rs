@@ -1,6 +1,31 @@
-use std::ops::{Deref, Index};
-use arbitrary::{Arbitrary, Unstructured};
+//! A non-empty vector type that guarantees at least one element is present. [NonEmptyVec] has an
+//! interface similar to [Vec] with additional methods to enforce the invariant. Get started with:
+//!
+//! ```rust, no_run
+//! # use nonempty::vec::NonEmptyVec;
+//!
+//! let nev = NonEmptyVec::new(42, vec![1, 2, 3]);
+//! let singleton = NonEmptyVec::singleton(42);
+//! ```
+//!
+//! [NonEmptyVec] conforms to [Index], [IntoIterator], [Deref], and many more, so operations are
+//! as [Vec]-like as possible. They are also usually zero-cost.
+//!
+//! ```rust, no_run
+//! # use nonempty::vec::NonEmptyVec;
+//!
+//! let nev = NonEmptyVec::new(42, vec![1, 2, 3]);
+//! assert_eq!(nev[0], 42);
+//! assert_eq!(nev.len(), 4);
+//! assert_eq!(nev.into_iter().sum::<i32>(), 48);
+//! ```
+//!
+//! When the feature `arbitrary` is enabled, [NonEmptyVec] implements [Arbitrary] for generation
+//! of randomly populated instances.
 
+use std::ops::{Deref, Index};
+
+/// Non-empty vector type.
 #[derive(Debug, Eq, PartialEq, Clone, Hash)]
 pub struct NonEmptyVec<T>(Vec<T>);
 
