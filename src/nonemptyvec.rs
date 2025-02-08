@@ -20,7 +20,7 @@
 //! assert_eq!(nev.into_iter().sum::<i32>(), 48);
 //! ```
 //!
-//! When the feature `arbitrary` is enabled, [NonEmptyVec] implements [arbitrary::Arbitrary] 
+//! When the feature `arbitrary` is enabled, [NonEmptyVec] implements [arbitrary::Arbitrary]
 //! for generation of randomly populated instances.
 
 use std::ops::{Deref, Index};
