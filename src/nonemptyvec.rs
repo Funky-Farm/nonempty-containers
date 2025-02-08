@@ -2,8 +2,8 @@
 //! interface similar to [Vec] with additional methods to enforce the invariant. Get started with:
 //!
 //! ```rust, no_run
-//! # use nonempty::vec::NonEmptyVec;
-//!
+//! # use nonempty_containers::NonEmptyVec;
+//! #
 //! let nev = NonEmptyVec::new(42, vec![1, 2, 3]);
 //! let singleton = NonEmptyVec::singleton(42);
 //! ```
@@ -12,8 +12,8 @@
 //! as [Vec]-like as possible. They are also usually zero-cost.
 //!
 //! ```rust, no_run
-//! # use nonempty::vec::NonEmptyVec;
-//!
+//! # use nonempty_containers::NonEmptyVec;
+//! #
 //! let nev = NonEmptyVec::new(42, vec![1, 2, 3]);
 //! assert_eq!(nev[0], 42);
 //! assert_eq!(nev.len(), 4);
@@ -29,6 +29,7 @@ use std::ops::{Deref, Index};
 #[derive(Debug, Eq, PartialEq, Clone, Hash)]
 pub struct NonEmptyVec<T>(Vec<T>);
 
+/// Errors that can occur when working with [NonEmptyVec].
 #[derive(Debug)]
 pub enum NonEmptyError {
     /// Encountered an empty [Vec] when it was expected to be non-empty.
@@ -50,9 +51,9 @@ impl <T> NonEmptyVec<T> {
 
     /// Creates a new singleton [NonEmptyVec]. Semantically equivalent to:
     /// ```no_run
-    /// # use wacc_compiler::nonempty::vec::NonEmptyVec;
+    /// # use nonempty_containers::NonEmptyVec;
     /// # let value = 42;
-    ///
+    /// #
     /// NonEmptyVec::new(value, Vec::new());
     /// ```
     pub fn singleton(value: T) -> Self {
@@ -83,8 +84,8 @@ impl <T> NonEmptyVec<T> {
 
     /// Attempts to create a [NonEmptyVec] from a [Vec], returning [None] if the [Vec] is empty.
     /// ```rust
-    /// # use wacc_compiler::nonempty::vec::NonEmptyVec;
-    ///
+    /// # use nonempty_containers::NonEmptyVec;
+    /// #
     /// assert!(NonEmptyVec::from_vec(vec![42]).is_ok());
     /// assert!(NonEmptyVec::from_vec(Vec::<u32>::new()).is_err());
     /// ```

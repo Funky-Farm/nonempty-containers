@@ -1,6 +1,6 @@
 [package]
 name = "nonempty-containers"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
     "Mohammad Abbas <mohammad.abbas23@imperial.ac.uk>",
     "Lancelot Liu <lancelot.liu23@imperial.ac.uk>",
