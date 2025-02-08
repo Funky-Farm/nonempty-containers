@@ -12,6 +12,7 @@ repository = "https://github.com/Funky-Farm/nonempty-containers"
 license = "MIT"
 keywords = ["non-empty", "nonempty", "container", "functional"]
 categories = ["data-structures"]
+rust-version = "1.65"
 
 [dependencies]
 # Language: Arbitrary data structure generation. Tied to the `arbitrary` feature.
