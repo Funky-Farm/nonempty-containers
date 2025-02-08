@@ -39,7 +39,7 @@ pub enum NonEmptyError {
     AlreadySingleton,
 }
 
-impl <T> NonEmptyVec<T> {
+impl<T> NonEmptyVec<T> {
     /// Creates a new [NonEmptyVec], ensuring at least one element is present.
     pub fn new(head: T, tail: Vec<T>) -> Self {
         // We can afford to call [Vec::len()] here because it's O(1).
@@ -106,6 +106,11 @@ impl <T> NonEmptyVec<T> {
         self.0.len()
     }
 
+    /// A [NonEmptyVec] is always non-empty.
+    pub fn is_empty(&self) -> bool {
+        false
+    }
+
     /// Returns this [NonEmptyVec] as a slice.
     pub fn as_slice(&self) -> &[T] {
         &self.0
@@ -127,13 +132,13 @@ impl <T> NonEmptyVec<T> {
     }
 }
 
-impl <T> From<NonEmptyVec<T>> for Vec<T> {
+impl<T> From<NonEmptyVec<T>> for Vec<T> {
     fn from(ne: NonEmptyVec<T>) -> Self {
         ne.0
     }
 }
 
-impl <T> TryFrom<Vec<T>> for NonEmptyVec<T> {
+impl<T> TryFrom<Vec<T>> for NonEmptyVec<T> {
     type Error = NonEmptyError;
 
     fn try_from(vec: Vec<T>) -> Result<Self, Self::Error> {
@@ -141,14 +146,14 @@ impl <T> TryFrom<Vec<T>> for NonEmptyVec<T> {
     }
 }
 
-impl <T> From<(T, Vec<T>)> for NonEmptyVec<T> {
+impl<T> From<(T, Vec<T>)> for NonEmptyVec<T> {
     fn from(value: (T, Vec<T>)) -> Self {
         let (head, tail) = value;
         Self::new(head, tail)
     }
 }
 
-impl <T> From<T> for NonEmptyVec<T> {
+impl<T> From<T> for NonEmptyVec<T> {
     fn from(value: T) -> Self {
         Self::singleton(value)
     }
@@ -180,7 +185,7 @@ impl<'a, T> IntoIterator for &'a mut NonEmptyVec<T> {
     }
 }
 
-impl <T> Index<usize> for NonEmptyVec<T> {
+impl<T> Index<usize> for NonEmptyVec<T> {
     type Output = T;
 
     fn index(&self, index: usize) -> &Self::Output {
