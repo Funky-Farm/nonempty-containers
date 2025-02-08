@@ -65,9 +65,20 @@ impl <T> NonEmptyVec<T> {
         &self.0[0]
     }
 
+    /// Returns the initial elements. This slice may be empty if the [NonEmptyVec] is a singleton.
+    pub fn init(&self) -> &[T] {
+        &self.0[..self.0.len() - 1]
+    }
+
     /// Returns the tail as a slice. This slice may be empty if the [NonEmptyVec] is a singleton.
     pub fn tail(&self) -> &[T] {
         &self.0[1..]
+    }
+
+    /// Returns the last element. This operation is safe as the invariant guarantees at least one
+    /// element is present.
+    pub fn last(&self) -> &T {
+        self.0.last().unwrap()
     }
 
     /// Attempts to create a [NonEmptyVec] from a [Vec], returning [None] if the [Vec] is empty.
