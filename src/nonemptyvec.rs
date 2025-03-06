@@ -24,6 +24,8 @@
 //! for generation of randomly populated instances.
 
 use std::ops::{Deref, Index};
+use std::slice::{Iter, IterMut};
+use std::vec::IntoIter;
 
 /// Non-empty vector type.
 #[derive(Debug, Eq, PartialEq, Clone, Hash)]
@@ -169,7 +171,7 @@ impl<T> Deref for NonEmptyVec<T> {
 
 impl<'a, T> IntoIterator for &'a NonEmptyVec<T> {
     type Item = &'a T;
-    type IntoIter = std::slice::Iter<'a, T>;
+    type IntoIter = Iter<'a, T>;
 
     fn into_iter(self) -> Self::IntoIter {
         self.0.iter()
@@ -178,10 +180,19 @@ impl<'a, T> IntoIterator for &'a NonEmptyVec<T> {
 
 impl<'a, T> IntoIterator for &'a mut NonEmptyVec<T> {
     type Item = &'a mut T;
-    type IntoIter = std::slice::IterMut<'a, T>;
+    type IntoIter = IterMut<'a, T>;
 
     fn into_iter(self) -> Self::IntoIter {
         self.0.iter_mut()
+    }
+}
+
+impl<T> IntoIterator for NonEmptyVec<T> {
+    type Item = T;
+    type IntoIter = IntoIter<T>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.0.into_iter()
     }
 }
 
