@@ -2,19 +2,20 @@
 //! interface similar to [Vec] with additional methods to enforce the invariant. Get started with:
 //!
 //! ```rust, no_run
-//! # use nonempty_containers::NonEmptyVec;
+//! # use nonempty_containers::{ne, NonEmptyVec};
 //! #
 //! let nev = NonEmptyVec::new(42, vec![1, 2, 3]);
 //! let singleton = NonEmptyVec::singleton(42);
+//! let r#macro = ne![1, 2, 3];
 //! ```
 //!
 //! [NonEmptyVec] conforms to [Index], [IntoIterator], [Deref], and many more, so operations are
 //! as [Vec]-like as possible. They are also usually zero-cost.
 //!
 //! ```rust, no_run
-//! # use nonempty_containers::NonEmptyVec;
+//! # use nonempty_containers::ne;
 //! #
-//! let nev = NonEmptyVec::new(42, vec![1, 2, 3]);
+//! let nev = ne![42, 1, 2, 3];
 //! assert_eq!(nev[0], 42);
 //! assert_eq!(nev.len(), 4);
 //! assert_eq!(nev.into_iter().sum::<i32>(), 48);
@@ -26,20 +27,11 @@
 use std::ops::{Deref, Index};
 use std::slice::{Iter, IterMut};
 use std::vec::IntoIter;
+use crate::errors::NonEmptyError;
 
 /// Non-empty vector type.
 #[derive(Debug, Eq, PartialEq, Clone, Hash)]
 pub struct NonEmptyVec<T>(Vec<T>);
-
-/// Errors that can occur when working with [NonEmptyVec].
-#[derive(Debug)]
-pub enum NonEmptyError {
-    /// Encountered an empty [Vec] when it was expected to be non-empty.
-    VecEmpty,
-
-    /// Attempted to remove an element from a singleton [NonEmptyVec].
-    AlreadySingleton,
-}
 
 impl<T> NonEmptyVec<T> {
     /// Creates a new [NonEmptyVec], ensuring at least one element is present.

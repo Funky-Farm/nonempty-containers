@@ -12,3 +12,4 @@ mod arbitrary;
 
 #[macro_use]
 mod macros;
+mod errors;
