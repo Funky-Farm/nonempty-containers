@@ -9,3 +9,6 @@ pub use nonemptyvec::NonEmptyVec;
 
 #[cfg(feature = "arbitrary")]
 mod arbitrary;
+
+#[macro_use]
+mod macros;

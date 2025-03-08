@@ -97,6 +97,14 @@ impl<T> NonEmptyVec<T> {
             false => Ok(Self(vec)),
         }
     }
+    
+    /// Creates a new [NonEmptyVec] from a [Vec] without checking if it's empty. This operation is
+    /// unsafe and should only be used by macros in this crate!
+    #[doc(hidden)]
+    pub fn __from_vec_unsafe(vec: Vec<T>) -> Self {
+        debug_assert!(!vec.is_empty());
+        Self(vec)
+    }
 
     /// Extracts the inner [Vec], consuming [self]. This operation is zero-cost.
     pub fn into_vec(self) -> Vec<T> {
