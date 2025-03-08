@@ -7,6 +7,9 @@
 pub mod nonemptyvec;
 pub use nonemptyvec::NonEmptyVec;
 
+pub mod nonemptyset;
+pub use nonemptyset::NonEmptySet;
+
 #[cfg(feature = "arbitrary")]
 mod arbitrary;
 

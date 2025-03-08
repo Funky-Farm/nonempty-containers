@@ -2,20 +2,20 @@
 //! interface similar to [Vec] with additional methods to enforce the invariant. Get started with:
 //!
 //! ```rust, no_run
-//! # use nonempty_containers::{ne, NonEmptyVec};
+//! # use nonempty_containers::{nev, NonEmptyVec};
 //! #
 //! let nev = NonEmptyVec::new(42, vec![1, 2, 3]);
 //! let singleton = NonEmptyVec::singleton(42);
-//! let r#macro = ne![1, 2, 3];
+//! let r#macro = nev![1, 2, 3];
 //! ```
 //!
 //! [NonEmptyVec] conforms to [Index], [IntoIterator], [Deref], and many more, so operations are
 //! as [Vec]-like as possible. They are also usually zero-cost.
 //!
 //! ```rust, no_run
-//! # use nonempty_containers::ne;
+//! # use nonempty_containers::nev;
 //! #
-//! let nev = ne![42, 1, 2, 3];
+//! let nev = nev![42, 1, 2, 3];
 //! assert_eq!(nev[0], 42);
 //! assert_eq!(nev.len(), 4);
 //! assert_eq!(nev.into_iter().sum::<i32>(), 48);
@@ -85,7 +85,7 @@ impl<T> NonEmptyVec<T> {
     /// ```
     pub fn from_vec(vec: Vec<T>) -> Result<Self, NonEmptyError> {
         match vec.is_empty() {
-            true => Err(NonEmptyError::VecEmpty),
+            true => Err(NonEmptyError::Empty),
             false => Ok(Self(vec)),
         }
     }
@@ -127,7 +127,7 @@ impl<T> NonEmptyVec<T> {
     /// [NonEmptyVec] would become empty.
     pub fn pop(&mut self) -> Result<T, NonEmptyError> {
         match self.0.len() {
-            0 => Err(NonEmptyError::VecEmpty),
+            0 => Err(NonEmptyError::Empty),
             1 => Err(NonEmptyError::AlreadySingleton),
             _ => Ok(self.0.pop().unwrap()),
         }

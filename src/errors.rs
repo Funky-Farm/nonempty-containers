@@ -6,7 +6,7 @@ use crate::NonEmptyVec;
 #[derive(Debug)]
 pub enum NonEmptyError {
     /// Encountered an empty collection when it was expected to be non-empty.
-    VecEmpty,
+    Empty,
 
     /// Attempted to remove an element from a singleton [NonEmptyVec].
     AlreadySingleton,
