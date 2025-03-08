@@ -1,7 +1,5 @@
 //! Error types for the non-empty types.
 
-use crate::NonEmptyVec;
-
 /// Errors that can occur when working with non-empty types..
 #[derive(Debug)]
 pub enum NonEmptyError {

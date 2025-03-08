@@ -31,6 +31,9 @@ macro_rules! nev {
     ($single:expr) => (
         $crate::nonemptyvec::NonEmptyVec::singleton($single)
     );
+    ($head:expr, $tail:expr) => (
+        $crate::nonemptyvec::NonEmptyVec::new($head, $tail)
+    );
     ($head:expr, $($tail:expr),+ $(,)?) => (
         $crate::nonemptyvec::NonEmptyVec::new($head, vec![$($tail),+])
     );
