@@ -199,6 +199,19 @@ impl<T> NonEmptyVec<T> {
             _ => Ok(self.0.pop_back().expect("[NonEmptyVec] invariant violated.")),
         }
     }
+    
+    /// Splits the [NonEmptyVec] into the first element and the rest. This operation is guaranteed
+    /// to succeed because the invariant guarantees at least one element is present.
+    pub fn split_first(&self) -> (&T, Iter<'_, T>) {
+        (self.head(), self.tail())
+    }
+    
+    /// Splits the [NonEmptyVec] into all elements except the last one and the last element. This
+    /// operation is guaranteed to succeed because the invariant guarantees at least one element is
+    /// present.
+    pub fn split_last(&self) -> (Iter<'_, T>, &T) {
+        (self.init(), self.last())
+    }
 }
 
 impl<T> From<NonEmptyVec<T>> for Vec<T> {
