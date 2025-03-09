@@ -1,6 +1,6 @@
 [package]
 name = "nonempty-containers"
-version = "0.1.1"
+version = "0.1.2"
 authors = [
     "Mohammad Abbas <mohammad.abbas23@imperial.ac.uk>",
     "Lancelot Liu <lancelot.liu23@imperial.ac.uk>",
@@ -16,8 +16,11 @@ rust-version = "1.65"
 
 [dependencies]
 # Language: Arbitrary data structure generation. Tied to the `arbitrary` feature.
-arbitrary = { features = ["derive"], optional = true, version = "1.4.1" }
+arbitrary = { version = "1.4.1", features = ["derive"], optional = true }
+
+im = { version = "15.1.0", optional = true }
 
 [features]
 # Allows arbitrary generation of non-empty containers.
 arbitrary = ["dep:arbitrary"]
+im = ["dep:im"]
