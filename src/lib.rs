@@ -4,11 +4,14 @@
 //! want to avoid repeatedly writing the same checks. This module provides non-empty versions of
 //! common container types, such as [Vec].
 
-pub mod nonemptyvec;
-pub use nonemptyvec::NonEmptyVec;
+pub mod ne_vec;
+pub use ne_vec::NEVec;
 
-pub mod nonemptyset;
-pub use nonemptyset::NonEmptySet;
+pub mod ne_set;
+pub use ne_set::NESet;
+
+pub mod ne_ordered_set;
+pub use ne_ordered_set::NEOrderedSet;
 
 #[cfg(feature = "arbitrary")]
 mod arbitrary;

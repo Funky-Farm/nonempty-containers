@@ -1,11 +1,11 @@
 //! Implementations for [Arbitrary] for non-empty container types.
 
+use crate::{NESet, NEVec};
+use arbitrary::{Arbitrary, Unstructured};
 use std::collections::HashSet;
 use std::hash::Hash;
-use crate::{NonEmptySet, NonEmptyVec};
-use arbitrary::{Arbitrary, Unstructured};
 
-impl<'a, T: Arbitrary<'a>> Arbitrary<'a> for NonEmptyVec<T> {
+impl<'a, T: Arbitrary<'a>> Arbitrary<'a> for NEVec<T> {
     fn arbitrary(u: &mut Unstructured<'a>) -> arbitrary::Result<Self> {
         let head = T::arbitrary(u)?;
         let mut tail = Vec::<T>::arbitrary(u)?;
@@ -14,7 +14,7 @@ impl<'a, T: Arbitrary<'a>> Arbitrary<'a> for NonEmptyVec<T> {
     }
 }
 
-impl<'a, T: Arbitrary<'a> + Eq + Hash> Arbitrary<'a> for NonEmptySet<T> {
+impl<'a, T: Arbitrary<'a> + Eq + Hash> Arbitrary<'a> for NESet<T> {
     fn arbitrary(u: &mut Unstructured<'a>) -> arbitrary::Result<Self> {
         let head = T::arbitrary(u)?;
         let mut tail = HashSet::<T>::arbitrary(u)?;

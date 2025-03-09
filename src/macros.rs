@@ -8,7 +8,7 @@
 ///
 /// ```
 /// # use nonempty_containers::nev;
-/// # 
+/// #
 /// let ne = nev![1, 2, 3];
 /// assert_eq!(ne[0], 1);
 /// assert_eq!(ne[1], 2);
@@ -18,36 +18,49 @@
 /// - Create a [NonEmptyVec] from a given head element and tail vector.
 ///
 /// ```
-/// # use nonempty_containers::{nev, NonEmptyVec};
-/// # 
+/// # use nonempty_containers::{nev, NEVec};
+/// #
 /// let vec = vec![2, 3, 4];
 /// let ne = nev![1; vec];
-/// assert_eq!(ne, NonEmptyVec::from_vec(vec![1, 2, 3, 4]).unwrap());
+/// assert_eq!(ne, NEVec::from_vec(vec![1, 2, 3, 4]).unwrap());
 /// ```
 ///
 /// Note that unlike [Vec]s, it is not possible to create an empty [NonEmptyVec] using this macro!
 #[macro_export]
 macro_rules! nev {
     ($elem:expr; $n:ident) => (
-        $crate::NonEmptyVec::new($elem, $n)
+        $crate::NEVec::new($elem, $n)
     );
     ($single:expr) => (
-        $crate::NonEmptyVec::singleton($single)
+        $crate::NEVec::singleton($single)
     );
     ($head:expr, $($tail:expr),+ $(,)?) => (
-        $crate::NonEmptyVec::new($head, vec![$($tail),+])
+        $crate::NEVec::new($head, vec![$($tail),+])
     );
 }
 
 #[macro_export]
 macro_rules! nes {
     ($elem:expr; $n:expr) => (
-        $crate::nonemptyset::NonEmptySet::__from_set_unsafe(std::iter::once($elem).chain(std::iter::repeat($elem).take($n - 1)).collect())
+        $crate::NESet::new($elem, $n)
     );
     ($single:expr) => (
-        $crate::nonemptyset::NonEmptySet::singleton($single)
+        $crate::NESet::singleton($single)
     );
     ($head:expr, $($tail:expr),+ $(,)?) => (
-        $crate::nonemptyset::NonEmptySet::new($head, vec![$($tail),+])
+        $crate::NESet::new($head, vec![$($tail),+])
+    );
+}
+
+#[macro_export]
+macro_rules! neos {
+    ($elem:expr; $n:expr) => (
+        $crate::NEOrderedSet::new($elem, $n)
+    );
+    ($single:expr) => (
+        $crate::NEOrderedSet::singleton($single)
+    );
+    ($head:expr, $($tail:expr),+ $(,)?) => (
+        $crate::NEOrderedSet::new($head, vec![$($tail),+])
     );
 }
