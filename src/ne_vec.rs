@@ -238,6 +238,11 @@ impl<T> NEVec<T> {
         let last = iter.next_back().expect("[NonEmptyVec] invariant violated.");
         (iter, last)
     }
+    
+    /// Returns an iterator over the elements of the [NEVec].
+    pub fn iter(&self) -> Iter<'_, T> {
+        self.0.iter()
+    }
 }
 
 impl<T> From<NEVec<T>> for Vec<T> {
