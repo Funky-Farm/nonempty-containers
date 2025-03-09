@@ -28,7 +28,7 @@
 /// Note that unlike [Vec]s, it is not possible to create an empty [NonEmptyVec] using this macro!
 #[macro_export]
 macro_rules! nev {
-    ($elem:expr; $n:ident) => (
+    ($elem:expr; $n:expr) => (
         $crate::NEVec::new($elem, $n)
     );
     ($single:expr) => (
