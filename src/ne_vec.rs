@@ -243,6 +243,11 @@ impl<T> NEVec<T> {
     pub fn iter(&self) -> Iter<'_, T> {
         self.0.iter()
     }
+    
+    /// Extends the [NEVec] with the elements from another collection.
+    pub fn extend<I: IntoIterator<Item = T>>(&mut self, other: I) {
+        self.0.extend(other);
+    }
 }
 
 impl<T> From<NEVec<T>> for Vec<T> {
