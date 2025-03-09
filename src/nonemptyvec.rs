@@ -212,6 +212,20 @@ impl<T> NonEmptyVec<T> {
     pub fn split_last(&self) -> (Iter<'_, T>, &T) {
         (self.init(), self.last())
     }
+    
+    /// Like [NonEmptyVec::split_first], but consumes the [NonEmptyVec].
+    pub fn take_split_first(self) -> (T, IntoIter<T>) {
+        let mut iter = self.0.into_iter();
+        let head = iter.next().expect("[NonEmptyVec] invariant violated.");
+        (head, iter)
+    }
+    
+    /// Like [NonEmptyVec::split_last], but consumes the [NonEmptyVec].
+    pub fn take_split_last(self) -> (IntoIter<T>, T) {
+        let mut iter = self.0.into_iter();
+        let last = iter.next_back().expect("[NonEmptyVec] invariant violated.");
+        (iter, last)
+    }
 }
 
 impl<T> From<NonEmptyVec<T>> for Vec<T> {
