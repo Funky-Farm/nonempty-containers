@@ -10,7 +10,7 @@
 //! let r#macro = nes![1, 2, 3];
 //! ```
 //!
-//! [NESet] conforms to [Index], [IntoIterator], [Deref], and many more, so operations are
+//! [NESet] conforms to [Index], [IntoIterator], and many more, so operations are
 //! as [HashSet]-like as possible. They are also usually zero-cost.
 //!
 //! ```rust, no_run
@@ -21,7 +21,7 @@
 //! assert_eq!(nes.len(), 4);
 //! ```
 //!
-//! When the feature `arbitrary` is enabled, [NESet] implements [arbitrary::Arbitrary]
+//! When the feature `arbitrary` is enabled, [NESet] implements [Arbitrary]
 //! for generation of randomly populated instances.
 
 use crate::errors::NonEmptyError;

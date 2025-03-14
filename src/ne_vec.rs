@@ -21,7 +21,7 @@
 //! assert_eq!(nev.into_iter().sum::<i32>(), 48);
 //! ```
 //!
-//! When the feature `arbitrary` is enabled, [NEVec] implements [arbitrary::Arbitrary]
+//! When the feature `arbitrary` is enabled, [NEVec] implements [Arbitrary]
 //! for generation of randomly populated instances.
 
 use crate::errors::NonEmptyError;
@@ -238,12 +238,12 @@ impl<T> NEVec<T> {
         let last = iter.next_back().expect("[NonEmptyVec] invariant violated.");
         (iter, last)
     }
-    
+
     /// Returns an iterator over the elements of the [NEVec].
     pub fn iter(&self) -> Iter<'_, T> {
         self.0.iter()
     }
-    
+
     /// Extends the [NEVec] with the elements from another collection.
     pub fn extend<I: IntoIterator<Item = T>>(&mut self, other: I) {
         self.0.extend(other);

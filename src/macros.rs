@@ -1,10 +1,10 @@
 //! Macros for creating non-empty containers.
 
-/// Creates a [NonEmptyVec] containing the arguments.
+/// Creates a [NEVec] containing the arguments.
 ///
 /// This macro is very similar in goal to the standard library's `vec!` macro:
 ///
-/// - Create a [NonEmptyVec] containing a given list of elements:
+/// - Create a [NEVec] containing a given list of elements:
 ///
 /// ```
 /// # use nonempty_containers::nev;
@@ -15,7 +15,7 @@
 /// assert_eq!(ne[2], 3);
 /// ```
 ///
-/// - Create a [NonEmptyVec] from a given head element and tail vector.
+/// - Create a [NEVec] from a given head element and tail vector.
 ///
 /// ```
 /// # use nonempty_containers::{nev, NEVec};
@@ -25,7 +25,7 @@
 /// assert_eq!(ne, NEVec::from_vec(vec![1, 2, 3, 4]).unwrap());
 /// ```
 ///
-/// Note that unlike [Vec]s, it is not possible to create an empty [NonEmptyVec] using this macro!
+/// Note that unlike [Vec]s, it is not possible to create an empty [NEVec] using this macro!
 #[macro_export]
 macro_rules! nev {
     ($elem:expr; $n:expr) => (
