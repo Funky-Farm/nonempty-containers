@@ -57,10 +57,10 @@ impl<T: Ord> NEOrderedSet<T> {
 
     /// Removes an element. Returns true if the set contained the value.
     pub fn remove(&mut self, value: &T) -> bool {
-        if self.0.len() == 1 && self.0.contains(&value) {
+        if self.0.len() == 1 && self.0.contains(value) {
             false // Prevent removal to maintain non-empty invariant
         } else {
-            self.0.remove(&value)
+            self.0.remove(value)
         }
     }
 
